@@ -1,4 +1,3 @@
-type AdminFirestore = import('firebase-admin').firestore.Firestore
 declare type FirestoreTimestamp =
   | Date
   | import('firebase-admin').firestore.Timestamp

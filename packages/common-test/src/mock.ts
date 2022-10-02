@@ -1,4 +1,5 @@
 import { User } from '@firebase-monorepo-template/common'
+import { Factory } from 'fishery'
 
 export const userAId = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAA'
 export const userBId = 'BBBBBBBBBBBBBBBBBBBBBBBBBBBB'
@@ -27,11 +28,10 @@ export class Mock {
     this.increment = payload.increment
   }
 
-  user({ username = 'userA' }: { username?: string } = {}): User {
-    return {
-      createdAt: this.defaultTimestamp,
-      updatedAt: this.defaultTimestamp,
-      username,
-    }
-  }
+  userFactory = Factory.define<User>(({ params }) => ({
+    createdAt: this.defaultTimestamp,
+    updatedAt: this.defaultTimestamp,
+    username: params.username ?? 'userA',
+    message: params.message ?? '',
+  }))
 }

@@ -494,6 +494,7 @@ __metadata:
     "@firebase/rules-unit-testing": ^2.0.4
     firebase: ^9.10.0
     firebase-admin: ^11.0.1
+    fishery: ^2.2.2
     typescript: ^4.8.4
     ulid: ^2.3.0
   languageName: unknown
@@ -5382,6 +5383,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fishery@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "fishery@npm:2.2.2"
+  dependencies:
+    lodash.mergewith: ^4.6.2
+  checksum: 270a90bb69c16b73e4dc3df20e0c9d7f54feed3658114c0fcdeda726634b624b89cfa39d3858170db85d9f5ef6fe130ffb16b0056e3dbe6a1473629e754f14cb
+  languageName: node
+  linkType: hard
+
 "flat-cache@npm:^3.0.4":
   version: 3.0.4
   resolution: "flat-cache@npm:3.0.4"
@@ -7845,6 +7855,13 @@ __metadata:
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: ad580b4bdbb7ca1f7abf7e1bce63a9a0b98e370cf40194b03380a46b4ed799c9573029599caebc1b14e3f24b111aef72b96674a56cfa105e0f5ac70546cdc005
+  languageName: node
+  linkType: hard
+
+"lodash.mergewith@npm:^4.6.2":
+  version: 4.6.2
+  resolution: "lodash.mergewith@npm:4.6.2"
+  checksum: a6db2a9339752411f21b956908c404ec1e088e783a65c8b29e30ae5b3b6384f82517662d6f425cc97c2070b546cc2c7daaa8d33f78db7b6e9be06cd834abdeb8
   languageName: node
   linkType: hard
 

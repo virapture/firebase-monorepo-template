@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^2.0.4",
+    "fishery": "^2.2.2",
     "typescript": "^4.8.4",
     "ulid": "^2.3.0"
   }

@@ -36,7 +36,11 @@ export class TestAdminRepository {
   }
 
   get userA() {
-    return this.mock.user()
+    return this.mock.userFactory.build()
+  }
+
+  get userB() {
+    return this.mock.userFactory.build({ username: 'userB' })
   }
 
   async setupUser(): Promise<void> {
