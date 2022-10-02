@@ -6,7 +6,10 @@
   "scripts": {
     "lint": "eslint --ext \".ts,.vue\" --ignore-path ../../.gitignore .",
     "build": "tsc",
-    "test": "UNIT_TEST=true jest --runInBand"
+    "test": "UNIT_TEST=true jest --runInBand",
+    "emulators:start": "firebase emulators:start -P dev --only firestore,auth,pubsub",
+    "test:watch": "yarn build && jest --runInBand --watch",
+    "test:emulator": "firebase -P dev --only firestore,auth,pubsub,hub emulators:exec 'yarn test'"
   },
   "engines": {
     "node": "16"

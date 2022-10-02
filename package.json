@@ -2,15 +2,13 @@
   "name": "firebase-monorepo-template",
   "version": "1.0.0",
   "scripts": {
-    "build:dev": "yarn workspace @firebase-monorepo-template/common build && yarn workspace @firebase-monorepo-template/functions build",
     "build:common": "yarn workspace @firebase-monorepo-template/common build && yarn workspace @firebase-monorepo-template/common-test build",
-    "build-functions:dev": "npm run config-set:dev --prefix ./functions && npm run build --prefix ./functions",
-    "build-functions:prod": "npm run config-set:prod --prefix ./functions && npm run build --prefix ./functions",
-    "build-all:dev": "yarn build-functions:dev",
-    "build-all:prod": "yarn build-functions:prod",
-    "deploy:dev": "./node_modules/.bin/firebase deploy -f -P dev --token=$FIREBASE_TOKEN",
-    "deploy:prod": "./node_modules/.bin/firebase deploy -f -P prod --token=$FIREBASE_TOKEN",
-    "test": "yarn workspace @firebase-monorepo-template/functions test-emulator && yarn workspace @firebase-monorepo-template/security-rule test-emulator"
+    "deploy": "./node_modules/.bin/firebase deploy -f -P ${ENVIRONMENT:-dev} --debug",
+    "deploy:dev": "ENVIRONMENT=dev yarn deploy",
+    "deploy:prod": "ENVIRONMENT=prod yarn deploy",
+    "emulators:start": "firebase emulators:start -P dev --only firestore,auth,pubsub",
+    "test:functions": "yarn workspace @firebase-monorepo-template/functions test:emulator",
+    "test:web": "yarn workspace @firebase-monorepo-template/web test:emulator"
   },
   "engines": {
     "node": "16"

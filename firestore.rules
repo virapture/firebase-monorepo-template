@@ -8,7 +8,7 @@ service cloud.firestore {
         function canCreateUser(userId) {
             let data = incomingData();
             return isAuthenticated() &&
-                   incomingHasAll(
+                   hasAllKeys(
                        data, [
                              'createdAt', 'updatedAt', 'username'
                              ]) &&
@@ -37,16 +37,12 @@ service cloud.firestore {
         return resource.data;
     }
 
-    function incomingHasAll(incomingData, keys) {
+    function hasAllKeys(incomingData, keys) {
         return incomingData.keys().hasAll(keys);
     }
 
-    function existingHasAll(existingData, keys) {
-        return existingData.keys().hasAll(keys);
-    }
-
     function isUnmodified(incomingData, existingData, key) {
-        return !incomingHasAll(incomingData, [key]) || incomingData[key] == existingData[key];
+        return !hasAllKeys(incomingData, [key]) || incomingData[key] == existingData[key];
     }
 
     function isUnmodifiedByKeyData(key, allKeys, incomingData, existingData) {
@@ -64,7 +60,7 @@ service cloud.firestore {
     }
 
     function isNull(incomingData, key) {
-        return !incomingHasAll(incomingData, [key]) || incomingData[key] == null;
+        return !hasAllKeys(incomingData, [key]) || incomingData[key] == null;
     }
 
 }
