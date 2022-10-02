@@ -13,7 +13,7 @@ on:
       credential:
         required: true
         description: |
-          GOOGLE_APPLICATION_CREDENTIALSを入れる
+          GOOGLE_APPLICATION_CREDENTIALSのjsonの値を入れる
 
 jobs:
   deploy:
@@ -23,7 +23,8 @@ jobs:
       matrix:
         node-version: [16]
     env:
-      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.credential }}
+      GOOGLE_APPLICATION_CREDENTIALS: /tmp/credentials.json
+      GCLOUD_SERVICE_KEY: ${{ secrets.credential }}
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -50,4 +51,9 @@ jobs:
       run: |
         yarn build:common
         yarn workspace @firebase-monorepo-template/web build:${{ inputs.environment }}
+    - run: echo $GCLOUD_SERVICE_KEY > $GOOGLE_APPLICATION_CREDENTIALS
     - run: yarn deploy:${{ inputs.environment }}
+    - name: delete GOOGLE_APPLICATION_CREDENTIALS
+      run: rm $GOOGLE_APPLICATION_CREDENTIALS
+      if: ${{ always() }}
+
