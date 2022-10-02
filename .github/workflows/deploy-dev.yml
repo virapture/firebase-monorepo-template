@@ -1,0 +1,16 @@
+name: deploy dev
+
+on:
+  push:
+    branches:
+      - develop
+      - feature/init-ci-cd
+
+jobs:
+
+  deploy-prod:
+    uses: virapture/firebase-monorepo-template/.github/workflows/deploy.yml@feature/init-ci-cd
+    with:
+      environment: dev
+    secrets:
+      credential: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_DEV }}

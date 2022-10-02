@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: yarn install && yarn build
+      - run: yarn install
+      - run: yarn build:common
+      - run: yarn workspace @firebase-monorepo-template/web build:dev
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TEST_AFDC2 }}'
-          projectId: test-afdc2
+          firebaseServiceAccount: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_DEV }}'
+          projectId: fir-monorepo-template-dev

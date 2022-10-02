@@ -9,10 +9,9 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "emulators:start": "firebase emulators:start -P dev --only firestore,auth,pubsub",
     "test": "UNIT_TEST=true jest --runInBand",
     "test:watch": "yarn build && jest --runInBand --watch",
-    "test:emulator": "firebase -P dev --only firestore,auth,pubsub emulators:exec 'yarn test'"
+    "test:emulator": "firebase -P dev --only firestore,auth,pubsub,hub emulators:exec 'yarn test'"
   },
   "engines": {
     "node": "16"

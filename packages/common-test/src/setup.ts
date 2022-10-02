@@ -45,7 +45,8 @@ export class Setup {
   }
 
   static async initialize(): Promise<Setup> {
-    const projectId = (process.env.FIREBASE_PROJECT_ID as string) ?? 'dev'
+    const projectId =
+      (process.env.FIREBASE_PROJECT_ID as string) ?? 'fir-monorepo-template-dev'
     process.env.FIRESTORE_EMULATOR_HOST = '0.0.0.0:8080'
     process.env.FIREBASE_AUTH_EMULATOR_HOST = '0.0.0.0:9099'
     process.env.FIREBASE_CONFIG = `{"projectId": "${projectId}"}`
@@ -55,7 +56,13 @@ export class Setup {
     setLogLevel('error')
     const env = await initializeTestEnvironment({
       firestore: {
+        host: '0.0.0.0',
+        port: 8080,
         rules: fs.readFileSync('../../firestore.rules', 'utf8'),
+      },
+      hub: {
+        host: '0.0.0.0',
+        port: 4400,
       },
       projectId: projectId,
     })

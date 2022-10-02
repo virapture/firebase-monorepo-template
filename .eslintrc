@@ -34,13 +34,14 @@
     "import/order": [
       "off"
     ],
-    "sort/imports": ["off"]
+    "sort/imports": ["off"],
+    "sort/object-properties": ["off"]
   },
   "settings": {
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
-    },
+    }
   }
 }

@@ -1,0 +1,15 @@
+name: deploy prod
+
+on:
+  push:
+    branches:
+      - main
+      - feature/init-ci-cd
+
+jobs:
+  deploy-prod:
+    uses: virapture/firebase-monorepo-template/.github/workflows/deploy.yml@feature/init-ci-cd
+    with:
+      environment: prod
+    secrets:
+      credential: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_PROD }}

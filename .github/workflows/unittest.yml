@@ -1,0 +1,52 @@
+name: unittest CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature*
+      - hotfix*
+      - refactor*
+  pull_request:
+    branches:
+      - main
+      - develop
+      - feature*
+      - hotfix*
+      - refactor*
+    types: [opened, synchronize, reopened]
+
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        node-version: [18]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache firebase emulators
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/firebase/emulators
+          key: ${{ runner.os }}-firebase-emulators-${{ hashFiles('~/.cache/firebase/emulators/**') }}
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ matrix.os }}-node-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: install dependencies
+        run: yarn install
+      - name: run common build
+        run: yarn build:common
+      - run: yarn test:functions
+      - run: yarn test:web
