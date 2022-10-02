@@ -57,7 +57,7 @@ export class Setup {
     const setup = new Setup()
     const env = await initializeTestEnvironment({
       firestore: {
-        rules: fs.readFileSync('../../../firestore.rules', 'utf8'),
+        rules: fs.readFileSync('../../firestore.rules', 'utf8'),
       },
       projectId: setup.projectId,
     })

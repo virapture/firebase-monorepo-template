@@ -513,16 +513,10 @@ __metadata:
   resolution: "@firebase-monorepo-template/functions@workspace:packages/functions"
   dependencies:
     "@sentry/serverless": ^7.14.0
-    "@typescript-eslint/eslint-plugin": ^5.38.1
-    "@typescript-eslint/parser": ^5.38.1
     dotenv: ^16.0.3
-    eslint: ^8.24.0
-    eslint-config-google: ^0.14.0
-    eslint-plugin-import: ^2.26.0
     firebase-admin: ^11.0.1
     firebase-functions: ^3.24.1
     firebase-functions-test: ^2.4.0
-    typescript: ^4.8.4
   languageName: unknown
   linkType: soft
 
@@ -784,7 +778,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@firebase/firestore-types@npm:2.5.0":
+"@firebase/firestore-types@npm:2.5.0, @firebase/firestore-types@npm:^2.5.0":
   version: 2.5.0
   resolution: "@firebase/firestore-types@npm:2.5.0"
   peerDependencies:
@@ -5258,11 +5252,14 @@ __metadata:
   resolution: "firebase-monorepo-template@workspace:."
   dependencies:
     "@firebase-monorepo-template/common": "workspace:^"
+    "@firebase/app-types": ^0.7.0
+    "@firebase/firestore-types": ^2.5.0
     "@types/jest": ^29.1.1
     "@types/node": ^18.7.23
     "@typescript-eslint/eslint-plugin": ^5.38.1
     "@typescript-eslint/parser": ^5.38.1
     eslint: ^8.24.0
+    eslint-config-google: ^0.14.0
     eslint-config-prettier: ^8.5.0
     eslint-plugin-import: ^2.26.0
     eslint-plugin-react: ^7.31.8

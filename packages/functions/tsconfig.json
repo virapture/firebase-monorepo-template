@@ -9,7 +9,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "es2018",
-    "types": ["node", "@types/node", "@types/jest", "@firebase/app-types"]
+    "types": ["node", "@types/node", "@types/jest", "@firebase/app-types"],
   },
   "compileOnSave": true,
   "include": ["src"],

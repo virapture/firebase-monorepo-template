@@ -16,11 +16,14 @@
     "node": "16"
   },
   "devDependencies": {
+    "@firebase/app-types": "^0.7.0",
+    "@firebase/firestore-types": "^2.5.0",
     "@types/jest": "^29.1.1",
     "@types/node": "^18.7.23",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "eslint": "^8.24.0",
+    "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.31.8",

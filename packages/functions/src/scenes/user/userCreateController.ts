@@ -1,7 +1,7 @@
 import admin from 'firebase-admin'
 import { User } from '@firebase-monorepo-template/common'
 import { defaultFunctions } from '../../functionConstant'
-import { HttpsError } from 'firebase-functions/lib/common/providers/https'
+import * as functions from 'firebase-functions'
 import { logError } from '../../utils/errorLogger'
 
 export class UserCreateController {
@@ -10,7 +10,7 @@ export class UserCreateController {
     private readonly reference: admin.firestore.DocumentReference,
   ) {
     if (!data) {
-      throw new HttpsError('invalid-argument', 'no user data')
+      throw new functions.https.HttpsError('invalid-argument', 'no user data')
     }
   }
 
