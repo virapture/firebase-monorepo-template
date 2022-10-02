@@ -2,7 +2,9 @@ name: deploy prod
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - main
+      - feature/init-ci-cd
 
 jobs:
   deploy-prod:
