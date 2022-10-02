@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "test-afdc2",
+    "default": "firebase-monorepo-template-dev",
     "dev": "firebase-monorepo-template-dev",
     "prod": "firebase-monorepo-template-prod",
   }
