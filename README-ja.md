@@ -13,12 +13,12 @@ firebaseのweb/cloud functionsでentityを共有しつつ、unit testも共有�
 
 ## package description
 
-[packages](./tree/main/packages)には役割ごとに下記のパッケージが配置されています。
+[packages](./packages)には役割ごとに下記のパッケージが配置されています。
 
-- [common](./tree/main/packages/common)
-- [common-test](./tree/main/packages/common-test)
-- [functions](./tree/main/packages/functions)
-- [web](./tree/main/packages/web)
+- [common](./packages/common)
+- [common-test](./packages/common-test)
+- [functions](./packages/functions)
+- [web](./packages/web)
 
 ### common
 
