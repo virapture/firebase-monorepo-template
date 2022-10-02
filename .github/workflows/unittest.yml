@@ -1,4 +1,4 @@
-name: pull request CI
+name: unittest CI
 
 on:
   push:

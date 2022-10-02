@@ -8,35 +8,26 @@ on:
         type: string
         description: |
           実行する環境
-          dev / stg / prod のいずれか
+          dev / prod のいずれか
     secrets:
-      aws_account_id:
+      credential:
         required: true
+        description: |
+          GOOGLE_APPLICATION_CREDENTIALSを入れる
 
 jobs:
-  deploy-prod:
+  deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
       matrix:
         node-version: [16]
-    env:
-      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_PROD }}
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - uses: actions/setup-java@v2
-      with:
-        distribution: 'adopt'
-        java-version: '15'
-    - uses: actions/setup-go@v1
-      with:
-        go-version: '1.16.4'
-    - run: go get github.com/matsu0228/fsrpl
-    - run: echo $(go env GOPATH)/bin >> $GITHUB_PATH
     - name: Cache firebase emulators
       uses: actions/cache@v3
       with:
@@ -56,6 +47,6 @@ jobs:
     - name: run build
       run: |
         yarn build:common
-        yarn workspace @app/web build:prod
+        yarn workspace @app/web build:${{ inputs.environment }}
     - run: yarn test
-    - run: yarn deploy:prod
+    - run: yarn deploy:${{ inputs.environment }}

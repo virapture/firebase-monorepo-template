@@ -6,32 +6,10 @@ on:
       - develop
 
 jobs:
-  deploy-dev:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    strategy:
-      matrix:
-        node-version: [16]
-    env:
-      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_PROD }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-          key: ${{ matrix.os }}-node-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: install dependencies
-        run: yarn install
-      - name: run build
-        run: |
-          yarn build:common
-          yarn workspace @app/web build:dev
-      - run: yarn deploy:dev
+
+  deploy-prod:
+    uses: virapture/firebase-monorepo-template/.github/workflows/deploy.yml@develop
+    with:
+      environment: dev
+    secrets:
+      credential: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_DEV }}
