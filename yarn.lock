@@ -500,15 +500,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@firebase-monorepo-template/common@file:./common.tgz::locator=%40firebase-monorepo-template%2Ffunctions%40workspace%3Apackages%2Ffunctions":
-  version: 1.0.0
-  resolution: "@firebase-monorepo-template/common@file:./common.tgz::locator=%40firebase-monorepo-template%2Ffunctions%40workspace%3Apackages%2Ffunctions"
-  dependencies:
-    firebase-admin: ^11.0.1
-  checksum: 818e5778747843f68d81f0f18b8b039814171e7d9c277b2b3022643f0e6d6df2aacf7043f1a1d9270034f22e3b89988d3090460ef7635d3db66833e6b629bac5
-  languageName: node
-  linkType: hard
-
 "@firebase-monorepo-template/common@workspace:^, @firebase-monorepo-template/common@workspace:packages/common":
   version: 0.0.0-use.local
   resolution: "@firebase-monorepo-template/common@workspace:packages/common"
@@ -522,7 +513,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@firebase-monorepo-template/functions@workspace:packages/functions"
   dependencies:
-    "@firebase-monorepo-template/common": ./common.tgz
     "@sentry/serverless": ^7.14.0
     dotenv: ^16.0.3
     firebase-admin: ^11.0.1

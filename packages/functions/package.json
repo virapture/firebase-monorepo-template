@@ -18,7 +18,6 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "@firebase-monorepo-template/common": "./common.tgz",
     "@sentry/serverless": "^7.14.0",
     "dotenv": "^16.0.3",
     "firebase-admin": "^11.0.1",
