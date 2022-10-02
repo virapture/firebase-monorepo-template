@@ -4,12 +4,11 @@ on:
   push:
     branches:
       - develop
-      - feature/init-ci-cd
 
 jobs:
 
   deploy-prod:
-    uses: virapture/firebase-monorepo-template/.github/workflows/deploy.yml@feature/init-ci-cd
+    uses: virapture/firebase-monorepo-template/.github/workflows/deploy.yml@develop
     with:
       environment: dev
     secrets:
