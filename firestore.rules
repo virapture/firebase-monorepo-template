@@ -1,17 +1,70 @@
 rules_version = '2';
 service cloud.firestore {
-  match /databases/{database}/documents {
-
-    // This rule allows anyone on the internet to view, edit, and delete
-    // all data in your Firestore database. It is useful for getting
-    // started, but it is configured to expire after 30 days because it
-    // leaves your app open to attackers. At that time, all client
-    // requests to your Firestore database will be denied.
-    //
-    // Make sure to write security rules for your app before that time, or else
-    // your app will lose access to your Firestore database
-    match /{document=**} {
-      allow read, write: if true;
+    match /databases/{database}/documents {
+        match /users/{userId} {
+            allow read: if isAuthenticated();
+            allow create: if canCreateUser(userId);
+        }
+        function canCreateUser(userId) {
+            let data = incomingData();
+            return isAuthenticated() &&
+                   incomingHasAll(
+                       data, [
+                             'createdAt', 'updatedAt', 'username'
+                             ]) &&
+                   isRequesterId(userId) &&
+                   data.createdAt is timestamp &&
+                   data.updatedAt is timestamp;
+        }
     }
-  }
+    // ** util functions ** //
+    function isAuthenticated() {
+        return request.auth != null;
+    }
+
+    function requesterId() {
+        return request.auth.uid;
+    }
+    function isRequesterId(userId) {
+        return request.auth.uid == userId;
+    }
+
+    function incomingData() {
+        return request.resource.data;
+    }
+
+    function existingData() {
+        return resource.data;
+    }
+
+    function incomingHasAll(incomingData, keys) {
+        return incomingData.keys().hasAll(keys);
+    }
+
+    function existingHasAll(existingData, keys) {
+        return existingData.keys().hasAll(keys);
+    }
+
+    function isUnmodified(incomingData, existingData, key) {
+        return !incomingHasAll(incomingData, [key]) || incomingData[key] == existingData[key];
+    }
+
+    function isUnmodifiedByKeyData(key, allKeys, incomingData, existingData) {
+        return !allKeys.hasAll([key]) || incomingData[key] == existingData[key];
+    }
+
+    function isStringSizeBetween(text, min, max) {
+        return text is string &&
+               text.size() <= max &&
+               text.size() >= min;
+    }
+
+    function isAlphaNumericString(text) {
+        return text.matches('[a-zA-Z0-9_]*');
+    }
+
+    function isNull(incomingData, key) {
+        return !incomingHasAll(incomingData, [key]) || incomingData[key] == null;
+    }
+
 }

@@ -15,31 +15,18 @@ import * as admin from 'firebase-admin'
 import * as fs from 'fs'
 import { userAId, userBId } from './mock'
 export class Setup {
-  readonly projectId: string
   readonly auth: { email: string; uid: string }
   readonly admin: admin.app.App
   readonly adminAuth: admin.auth.Auth
   readonly adminFirestore: admin.firestore.Firestore
-  get clientFirestoreAuthenticated(): firebase.firestore.Firestore {
-    return this.authenticatedContext.firestore()
-  }
-  get clientFirestoreAuthenticatedB(): firebase.firestore.Firestore {
-    return this.authenticatedContextB.firestore()
-  }
-  get clientFirestoreUnAuthenticated(): firebase.firestore.Firestore {
-    return this.unauthenticatedContext.firestore()
-  }
-  env!: RulesTestEnvironment
-  authenticatedContext!: RulesTestContext
-  authenticatedContextB!: RulesTestContext
-  unauthenticatedContext!: RulesTestContext
+  readonly clientFirestoreAuthenticated: firebase.firestore.Firestore
+  readonly clientFirestoreAuthenticatedB: firebase.firestore.Firestore
+  readonly clientFirestoreUnAuthenticated: firebase.firestore.Firestore
+  readonly authenticatedContext: RulesTestContext
+  readonly authenticatedContextB: RulesTestContext
+  readonly unauthenticatedContext: RulesTestContext
 
-  constructor() {
-    this.projectId = (process.env.FIREBASE_PROJECT_ID as string) ?? 'dev'
-    process.env.FIRESTORE_EMULATOR_HOST = '0.0.0.0:8080'
-    process.env.FIREBASE_AUTH_EMULATOR_HOST = '0.0.0.0:9099'
-    process.env.FIREBASE_CONFIG = `{"projectId": "${this.projectId}"}`
-    process.env.GCLOUD_PROJECT = this.projectId
+  constructor(readonly env: RulesTestEnvironment) {
     const uid = userAId
     this.auth = {
       email: `${uid}@test.com`,
@@ -48,24 +35,31 @@ export class Setup {
     this.admin = admin.apps.length ? admin.apps[0]! : admin.initializeApp()
     this.adminAuth = this.admin.auth()
     this.adminFirestore = this.admin.firestore()
+    this.authenticatedContext = env.authenticatedContext(this.auth.uid)
+    this.clientFirestoreAuthenticated = this.authenticatedContext.firestore()
+    this.authenticatedContextB = env.authenticatedContext(userBId, {})
+    this.clientFirestoreAuthenticatedB = this.authenticatedContextB.firestore()
+    this.unauthenticatedContext = env.unauthenticatedContext()
+    this.clientFirestoreUnAuthenticated =
+      this.unauthenticatedContext.firestore()
   }
 
   static async initialize(): Promise<Setup> {
+    const projectId = (process.env.FIREBASE_PROJECT_ID as string) ?? 'dev'
+    process.env.FIRESTORE_EMULATOR_HOST = '0.0.0.0:8080'
+    process.env.FIREBASE_AUTH_EMULATOR_HOST = '0.0.0.0:9099'
+    process.env.FIREBASE_CONFIG = `{"projectId": "${projectId}"}`
+    process.env.GCLOUD_PROJECT = projectId
     // // セットしないと間違ったwarningがたくさん出てしまう
     // // 関連 issue: https://github.com/firebase/firebase-js-sdk/issues/5872
     setLogLevel('error')
-    const setup = new Setup()
     const env = await initializeTestEnvironment({
       firestore: {
         rules: fs.readFileSync('../../firestore.rules', 'utf8'),
       },
-      projectId: setup.projectId,
+      projectId: projectId,
     })
-    setup.authenticatedContext = env.authenticatedContext(setup.auth.uid, {})
-    setup.authenticatedContextB = env.authenticatedContext(userBId, {})
-    setup.unauthenticatedContext = env.unauthenticatedContext()
-    setup.env = env
-    return setup
+    return new Setup(env)
   }
 
   get authenticatedContextFirestore(): Firestore {

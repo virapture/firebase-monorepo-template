@@ -12,7 +12,7 @@
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "types": ["@types/node", "@firebase/auth-types", "@firebase/functions-types"],
+    "types": ["@types/node", "@firebase/auth-types", "@firebase/functions-types", "@types/jest", "@firebase/app-types"],
     "declaration": true
   },
   "compileOnSave": true,

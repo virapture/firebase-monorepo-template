@@ -18,25 +18,27 @@ export class TestProvider {
   }
 
   constructor(private readonly setup: Setup) {
-    this.projectId = setup.projectId
+    this.projectId = setup.env.projectId
     this.authRepository = new TestAdminAuthRepository(this.setup.adminAuth)
-    this.admin = new TestAdminRepository(setup.adminFirestore, new Mock({
-      arrayUnion: admin.firestore.FieldValue.arrayUnion,
-      defaultTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
-      increment: admin.firestore.FieldValue.increment,
-      nowTimestamp: admin.firestore.Timestamp.now(),
-      serverTimestamp: admin.firestore.FieldValue.serverTimestamp,
-    }))
+    this.admin = new TestAdminRepository(
+      setup.adminFirestore,
+      new Mock({
+        arrayUnion: admin.firestore.FieldValue.arrayUnion,
+        defaultTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+        increment: admin.firestore.FieldValue.increment,
+        nowTimestamp: admin.firestore.Timestamp.now(),
+        serverTimestamp: admin.firestore.FieldValue.serverTimestamp,
+      }),
+    )
     this.client = new TestClientRepository(
-      setup.clientFirestoreAuthenticated,
-      setup.clientFirestoreAuthenticatedB,
+      setup,
       new Mock({
         arrayUnion: firebase.firestore.FieldValue.arrayUnion,
         defaultTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
         increment: firebase.firestore.FieldValue.increment,
         nowTimestamp: firebase.firestore.Timestamp.now(),
         serverTimestamp: firebase.firestore.FieldValue.serverTimestamp,
-      })
+      }),
     )
   }
 

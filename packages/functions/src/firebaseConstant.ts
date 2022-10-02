@@ -6,7 +6,7 @@ export const isEmulator =
   !!process.env.FIRESTORE_EMULATOR_HOST ||
   process.env.UNIT_TEST === 'true'
 
-export function getFirebase(): admin.app.App {
+export function getFirebaseAdmin(): admin.app.App {
   if (admin.apps.length && admin.apps[0]) {
     return admin.apps[0]
   }
@@ -35,14 +35,14 @@ export function getFirebase(): admin.app.App {
   })
 }
 
-export function getStorage() {
-  return getFirebase().storage()
+export function getStorageAdmin() {
+  return getFirebaseAdmin().storage()
 }
-export function getAuth() {
-  return getFirebase().auth()
+export function getAuthAdmin() {
+  return getFirebaseAdmin().auth()
 }
-export function getFirestore() {
-  const firestore = getFirebase().firestore()
+export function getFirestoreAdmin() {
+  const firestore = getFirebaseAdmin().firestore()
   const setting: FirebaseFirestore.Settings = {
     timestampsInSnapshots: true,
   }

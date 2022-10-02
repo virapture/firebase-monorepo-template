@@ -45,6 +45,7 @@ export class TestAdminRepository {
 
   async setupUser(): Promise<void> {
     await this.userADoc.set(this.userA)
+    await this.userBDoc.set(this.userB)
   }
 
   async fetchUserA(): Promise<User> {

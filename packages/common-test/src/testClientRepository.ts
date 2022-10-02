@@ -1,12 +1,13 @@
 import { Mock, userAId, userBId, userCId, userDId, userEId } from './mock'
 import firebase from 'firebase/compat'
+import { Setup } from './setup'
 
 export class TestClientRepository {
-  constructor(
-    readonly clientFirestore: firebase.firestore.Firestore,
-    readonly clientFirestoreB: firebase.firestore.Firestore,
-    readonly mock: Mock,
-  ) {}
+  constructor(readonly setup: Setup, readonly mock: Mock) {}
+
+  get unAuthFirestore() {
+    return this.setup.clientFirestoreUnAuthenticated
+  }
 
   get userADoc(): firebase.firestore.DocumentReference {
     return this.userCollection.doc(userAId)
@@ -29,7 +30,7 @@ export class TestClientRepository {
   }
 
   get userCollection(): firebase.firestore.CollectionReference {
-    return this.clientFirestore.collection('users')
+    return this.setup.clientFirestoreAuthenticated.collection('users')
   }
 
   get userA() {
