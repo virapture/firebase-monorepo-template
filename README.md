@@ -15,7 +15,7 @@ The following functions are prepared as templates.
 
 ## package description
 
-[packages](./tree/main/packages) contains the following packages for each role.
+[packages](./packages) contains the following packages for each role.
 
 - [common](./tree/main/packages/common)
 - [common-test](./tree/main/packages/common-test)
