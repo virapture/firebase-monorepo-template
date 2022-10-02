@@ -9,7 +9,7 @@ on:
 jobs:
 
   deploy-prod:
-    uses: virapture/firebase-monorepo-template/.github/workflows/deploy.yml@develop
+    uses: virapture/firebase-monorepo-template/.github/workflows/deploy.yml@feature/init-ci-cd
     with:
       environment: dev
     secrets:
