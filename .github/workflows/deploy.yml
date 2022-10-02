@@ -49,6 +49,5 @@ jobs:
     - name: run build
       run: |
         yarn build:common
-        yarn workspace @app/web build:${{ inputs.environment }}
-    - run: yarn test
+        yarn workspace @firebase-monorepo-template/web build:${{ inputs.environment }}
     - run: yarn deploy:${{ inputs.environment }}
