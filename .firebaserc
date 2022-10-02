@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "test-afdc2",
+    "dev": "firebase-monorepo-template-dev",
+    "prod": "firebase-monorepo-template-prod",
+  }
+}

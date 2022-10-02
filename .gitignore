@@ -82,6 +82,7 @@ node_modules/
 
 
 # Compiled JavaScript files
+lib/**
 lib/**/*.js
 lib/**/*.ts
 lib/**/*.js.map

@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "outDir": "lib",
+    "sourceMap": true,
+    "types": ["@types/node", "@types/jest"],
+    "target": "es2021"
+  },
+  "compileOnSave": true
+}

@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "lib",
+    "sourceMap": true,
+    "strict": true,
+    "types": ["@types/node", "@firebase/auth-types", "@firebase/functions-types"],
+    "declaration": true
+  },
+  "compileOnSave": true,
+  "include": ["src", "tests"],
+  "exclude": ["tests", "coverage", "jest.config.js", "node_modules"]
+}

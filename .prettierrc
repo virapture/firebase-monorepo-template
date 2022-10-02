@@ -1,0 +1,7 @@
+{
+  "jsonRecursiveSort": true,
+  "trailingComma": "all",
+  "semi": false,
+  "arrowParens": "always",
+  "singleQuote": true
+}

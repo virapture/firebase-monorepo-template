@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "lib": ["esnext", "esnext.asynciterable", "dom"],
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "outDir": "lib",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2018",
+    "types": ["node", "@types/node", "@types/jest", "@firebase/app-types"]
+  },
+  "compileOnSave": true,
+  "include": ["src"],
+  "exclude": ["node_modules"],
+}

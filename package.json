@@ -1,0 +1,50 @@
+{
+  "name": "firebase-monorepo-template",
+  "version": "1.0.0",
+  "scripts": {
+    "build:dev": "yarn workspace @firebase-monorepo-template/common build && yarn workspace @firebase-monorepo-template/functions build",
+    "build:common": "yarn workspace @firebase-monorepo-template/common build && yarn workspace @firebase-monorepo-template/common-test build",
+    "build-functions:dev": "npm run config-set:dev --prefix ./functions && npm run build --prefix ./functions",
+    "build-functions:prod": "npm run config-set:prod --prefix ./functions && npm run build --prefix ./functions",
+    "build-all:dev": "yarn build-functions:dev",
+    "build-all:prod": "yarn build-functions:prod",
+    "deploy:dev": "./node_modules/.bin/firebase deploy -f -P dev --token=$FIREBASE_TOKEN",
+    "deploy:prod": "./node_modules/.bin/firebase deploy -f -P prod --token=$FIREBASE_TOKEN",
+    "test": "yarn workspace @firebase-monorepo-template/functions test-emulator && yarn workspace @firebase-monorepo-template/security-rule test-emulator"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.1.1",
+    "@types/node": "^18.7.23",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-sort": "^2.4.0",
+    "firebase-tools": "^11.13.0",
+    "jest": "^29.1.2",
+    "prettier": "^2.7.1",
+    "prettier-plugin-sort-json": "^0.0.3",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  },
+  "main": "index.js",
+  "repository": "git@github.com:virapture/firebase-monorepo-template.git",
+  "author": "mogmet <mogmet@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "packageManager": "yarn@3.2.2",
+  "dependencies": {
+    "@firebase-monorepo-template/common": "workspace:^"
+  }
+}
