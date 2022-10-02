@@ -18,4 +18,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_PROD }}'
           channelId: live
-          projectId: fir-monorepo-template-dev
+          projectId: fir-monorepo-template-prd
