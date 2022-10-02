@@ -3,9 +3,19 @@ name: pull request CI
 on:
   push:
     branches:
-      - feature/*
-      - bugfix/*
-      - hotfix/*
+      - main
+      - develop
+      - feature*
+      - hotfix*
+      - refactor*
+  pull_request:
+    branches:
+      - main
+      - develop
+      - feature*
+      - hotfix*
+      - refactor*
+    types: [opened, synchronize, reopened]
 
 jobs:
   pr-ci:
