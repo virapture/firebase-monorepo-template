@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build:common": "yarn workspace @firebase-monorepo-template/common build && yarn workspace @firebase-monorepo-template/common-test build",
-    "deploy": "./node_modules/.bin/firebase deploy -f -P ${ENVIRONMENT:-dev} --debug",
+    "deploy": "./node_modules/.bin/firebase deploy -f -P ${ENVIRONMENT:-dev}",
     "deploy:dev": "ENVIRONMENT=dev yarn deploy",
     "deploy:prod": "ENVIRONMENT=prod yarn deploy",
     "emulators:start": "firebase emulators:start -P dev --only firestore,auth,pubsub",
