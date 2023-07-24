@@ -1,6 +1,6 @@
 # firebase monorepo template
 
-[日本語はこちら](./tree/main/README-ja.md)
+[日本語はこちら](./README-ja.md)
 
 This is a template repository that shares entities with firebase web/cloud functions and also allows unit tests to be shared.
 
