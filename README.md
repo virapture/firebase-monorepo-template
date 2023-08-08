@@ -4,7 +4,7 @@
 
 This is a template repository that shares entities with firebase web/cloud functions and also allows unit tests to be shared.
 
-[See here for the explanation in the article](https://qiita.com/mogmet/fafe7c58cb7649cf1b36)
+[See here for the explanation in the article](https://qiita.com/mogmet/items/fafe7c58cb7649cf1b36)
 
 The following functions are prepared as templates.
 
