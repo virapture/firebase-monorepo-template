@@ -2,7 +2,7 @@
 
 firebaseのweb/cloud functionsでentityを共有しつつ、unit testも共有にかけるようにしたテンプレートリポジトリです。
 
-[記事での説明はこちらを参照](https://qiita.com/mogmet/fafe7c58cb7649cf1b36)
+[記事での説明はこちらを参照](https://qiita.com/mogmet/items/fafe7c58cb7649cf1b36)
 
 下記の機能をテンプレートとして準備しています。
 
